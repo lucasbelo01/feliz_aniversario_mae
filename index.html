@@ -57,16 +57,6 @@
             color: #E75480;
             font-weight: bold;
         }
-        .spotify-player-container {
-            margin-top: 30px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            width: 100%;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
         .bio-section {
             margin-top: 40px;
             font-size: 1.25em;
@@ -113,27 +103,6 @@
             border: 8px solid #FFF;
             position: relative;
         }
-        .photo-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 15px;
-            font-size: 1em;
-            text-align: center;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-in-out;
-            opacity: 0;
-            line-height: 1.4;
-        }
-        .photo-card:hover .photo-caption {
-            transform: translateY(0);
-            opacity: 1;
-        }
         .album-controls {
             margin-top: 25px;
             display: flex;
@@ -157,6 +126,19 @@
             background-color: #FF69B4;
             color: #FFF0F5;
         }
+        .video-container {
+            margin-top: 50px;
+            padding: 30px;
+            border: 2px dashed #FF69B4;
+            border-radius: 10px;
+            background-color: #FFF0F5;
+            text-align: center;
+        }
+        .video-container video {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
         /* Responsividade para telas menores */
         @media (max-width: 768px) {
             body { padding: 10px; }
@@ -164,7 +146,6 @@
             .page-header h1 { font-size: 3em; }
             .bio-section p, .bio-section .signature { font-size: 1em; }
             .photo-card { height: 300px; }
-            .photo-caption { font-size: 0.9em; padding: 10px; }
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -177,15 +158,11 @@
             <h1>Para a melhor mãe do mundo!</h1>
             <p class="subtitle">Aline Belo</p>
             <div id="countdown-timer"></div>
-            
-            <div class="spotify-player-container">
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/25Q94Q2t02Tj7G29L3M9O3?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
         </header>
 
         <section class="bio-section">
             <p>
-                A melhor mãe do mundo, de seres humanos e animais (contando com o João e o Zé, os dois lerdos), ALINE BELO! Ela é a mulher mais inteligente que conhecemos, que planeja como ninguém e, mesmo diante de qualquer perrengue, nunca perde o sorriso que contagia todos ao redor e ilumina o ambiente. Com suas piadas sem graça (minha mais orgulhosa herança) e seu amor incondicional, ela se torna a pessoa mais inspiradora e esforçada que todos nós admiramos profundamente.
+                A melhor mãe do mundo, de seres humanos e animais (contando com o João aquele lerdão). É a mulher mais inteligente que conhecemos, que planeja como ninguém e, mesmo diante de qualquer perrengue, nunca perde o sorriso que contagia todos ao redor e ilumina o ambiente. Com suas piadas sem graça (minha mais orgulhosa herança) e seu amor incondicional, ela se torna a pessoa mais inspiradora e esforçada que todos nós admiramos profundamente.
             </p>
             <p>
                 Conhecida como a "Nazaré" dos gatos, pelo seu hábito de ajudar os bichinhos necessitados, sua compaixão se estende a toda forma de vida, como um super-herói! Ela é também uma motoqueira maluca, com um "Belo" histórico de quedas e acidentes, mas ela continua rodando por aí, mostrando que você pode tentar derrubar quantas vezes for, mas um Belo de verdade sempre levanta. Mesmo que ela negue até fazer birra, é sim a melhor cozinheira do mundo, todos os pratos de domingo são um espetáculo e sinceramente, minhas marmitas sempre causam uma inveja no pessoal aqui do trabalho, o cheiro já deixa a amostra o amor e carinho colocados naquele prato.
@@ -197,7 +174,23 @@
                 Do seu filho que te ama muito, Lucas Belo.
             </p>
         </section>
-        
+
+        <section class="video-container">
+            <h2>Mensagem de vídeo</h2>
+            <video width="640" height="360" controls>
+                <source src="mae-e-amigas.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </section>
+
+        <section class="video-container">
+            <h2>Uma mensagem de vídeo</h2>
+            <video width="640" height="360" controls>
+                <source src="mae-e-tati.mp4" type="video/mp4">
+                Seu navegador não suporta a tag de vídeo.
+            </video>
+        </section>
+
         <section class="photo-album">
             <div class="album-container" id="album-container">
             </div>
@@ -220,35 +213,39 @@
             subtitle: "Aline Belo",
             birthday: "September 30, 2025 00:00:00",
             bio: {
-                paragraph1: "A melhor mãe do mundo, de seres humanos e animais (contando com o João e o Zé, os dois lerdos), ALINE BELO! Ela é a mulher mais inteligente que conhecemos...",
-                paragraph2: "Conhecida como a 'Nazaré' dos gatos, pelo seu hábito de ajudar os bichinhos necessitados...",
-                paragraph3: "O que eu quero dizer com tudo isso, é que a pessoa mais gentil e forte que eu, e falo por todos, NÓS conhecemos...",
+                paragraph1: "A melhor mãe do mundo, de seres humanos e animais (contando com o João aquele lerdão). É a mulher mais inteligente que conhecemos, que planeja como ninguém e, mesmo diante de qualquer perrengue, nunca perde o sorriso que contagia todos ao redor e ilumina o ambiente. Com suas piadas sem graça (minha mais orgulhosa herança) e seu amor incondicional, ela se torna a pessoa mais inspiradora e esforçada que todos nós admiramos profundamente.",
+                paragraph2: "Conhecida como a 'Nazaré' dos gatos, pelo seu hábito de ajudar os bichinhos necessitados, sua compaixão se estende a toda forma de vida, como um super-herói! Ela é também uma motoqueira maluca, com um 'Belo' histórico de quedas e acidentes, mas ela continua rodando por aí, mostrando que você pode tentar derrubar quantas vezes for, mas um Belo de verdade sempre levanta. Mesmo que ela negue até fazer birra, é sim a melhor cozinheira do mundo, todos os pratos de domingo são um espetáculo e sinceramente, minhas marmitas sempre causam uma inveja no pessoal aqui do trabalho, o cheiro já deixa a amostra o amor e carinho colocados naquele prato.",
+                paragraph3: "O que eu quero dizer com tudo isso, é que a pessoa mais gentil e forte que eu, e falo por todos, NÓS conhecemos, mora comigo, me ensinou tudo que eu sei hoje e me deu a mais linda herança do mundo, de que quando você ajuda alguém, você ajuda todo mundo. Feliz Aniversário Mãe! eu te amo demais, você é a melhor, e é Punkrock!!!",
                 signature: "Do seu filho que te ama muito, Lucas Belo."
             },
             photos: [
-                { url: "mae-na-praia.jpg", caption: "Mãe na praia" },
-                { url: "mae-e-filho-shopping.jpg", caption: "Mãe e filho no shopping" },
-                { url: "mae-e-filho-joao.jpg", caption: "Mãe e filho João" },
-                { url: "mae-e-familia-parque.jpg", caption: "Mãe e família no parque" },
-                { url: "mae-na-cozinha.jpg", caption: "Mãe na cozinha" },
-                { url: "mae-e-avo.jpg", caption: "Mãe e avó" },
-                { url: "mae-e-pai-banheira.jpg", caption: "Mãe e pai na banheira" },
-                { url: "mae-recuperando.jpg", caption: "Mãe recuperando" },
-                { url: "mae-e-vi.jpg", caption: "Parabéns Raquel rsrs minha cópia mal-feita 😂 Todo mundo fala que a gente se parece… mas eu juro que sou a versão melhorada, viu? 😏 Amo você, que seu dia seja cheio de bolo, risadas e muita felicidade.🎂💖 Ass: Rute" },
-                { url: "mae-e-camilinha.jpg", caption: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
-                { url: "mae-e-bicho.jpg", caption: "Mãe com seus bichinhos" },
-                { url: "mae-e-pai1.jpg", caption: "Mãe e pai" },
-                { url: "mae-e-pai2.jpg", caption: "Mãe e pai" },
-                { url: "mae-e-familia.jpg", caption: "Mãe e família" },
-                { url: "mae-e-pamelagav.jpg", caption: "Mãe e Pâmela" },
-                { url: "mae-e-bia.jpg", caption: "Mãe e Bia" },
-                { url: "mae-e-tata.jpg", caption: "Mãe e Tatá" }
+                { url: "mae-na-praia.jpg" },
+                { url: "mae-e-filho-shopping.jpg" },
+                { url: "mae-e-filho-joao.jpg" },
+                { url: "mae-e-familia-parque.jpg" },
+                { url: "mae-na-cozinha.jpg" },
+                { url: "mae-e-avo.jpg" },
+                { url: "mae-e-pai-banheira.jpg" },
+                { url: "mae-recuperando.jpg" },
+                { url: "mae-e-vi.jpg" },
+                { url: "mae-e-camilinha.jpg" },
+                { url: "mae-e-bicho.jpg" },
+                { url: "mae-e-pai1.jpg" },
+                { url: "mae-e-pai2.jpg" },
+                { url: "mae-e-familia.jpg" },
+                { url: "mae-e-pamelagav.jpg" },
+                { url: "mae-e-bia.jpg" },
+                { url: "mae-e-tata.jpg" }
             ],
             messages: [
+                { sender: "Dudu (Marido)", message: "Feliz aniversário, Tchu. Que seu novo ano seja tão incrível quanto você. Te amo." },
                 { sender: "Vivi (Irmã de Aline)", message: "Parabéns Raquel rsrs, minha cópia mal-feita 😂. Todo mundo fala que a gente se parece… mas eu juro que sou a versão melhorada, viu? 😏. Amo você. Que seu dia seja cheio de bolo, risadas e muita felicidade. 🎂💖" },
-                { sender: "Camilinha", message: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
+                { sender: "Camilinha", message: "Parabéns!!!! Desde a primeira vez que te vi, com durepox no óculos e esse jeitinho avoado, eu já sabia que você era especial. Você sempre me acolheu como filha, me encheu de carinho e de marmitinhas cheias de amor. Lembra quando você me deixava pilotar a sua PCXOTA? Eu no comando e você de boa(eu acho) na garupa . Sou muito grata pelo carinho que vocês têm por mim! Amo você! BORA BEBEEER!" },
                 { sender: "Tata (Nora de Aline)", message: "Aline, não tenho palavras pra descrever sobre sua importância e valor em minha vida. Desde o primeiro dia que nos conhecemos você sempre foi tão gentil, tão atenciosa, caridosa e divertida! Fiquei surpresa em ter sido tão bem acolhida, mesmo sendo ainda só uma estranha; com o passar desses anos, percebi que aquilo não era algo exclusivo do momento, mas era, na realidade, quem você é, na sua mais pura essência. Eu sou eternamente grata ao universo por ter me dado a oportunidade de te conhecer e conviver com você, saber que uma pessoa tão incrível nutre apreço por mim é algo impagável! Pode soar estranho o que eu vou falar agora (por eu ser a namorada do seu filho), mas eu te considero como uma mãe. Você é a minha principal figura materna e me espelho muito em você, nas suas atitudes. Espero um dia me tornar alguém tão tão maravilhoso quanto você é, me esforço todos os dias pra isso. Bem, estou me prolongando bastante, então vou encerrar por aqui. Eu espero de coração que você tenha um aniversário feliz, e que sua vida seja cada dia melhor, que você conquiste tudo que deseja, porque você merece, e merece demais. Eu te amo. Obrigada por tudo ♡" },
-                { sender: "Bia (Melhor amiga)", message: "Amiga querida, hoje é dia de celebrar você! 🎉✨ Que seu novo ciclo seja repleto de alegrias, saúde, conquistas e muitos sorrisos. Sou grata por ter você na minha vida, por todas as risadas, conversas e momentos que já compartilhamos. Que seus sonhos floresçam e que cada dia traga motivos para você se sentir ainda mais especial, porque é exatamente isso que você é. 💖 Feliz aniversário, minha grande amiga!" }
+                { sender: "Bia (Melhor amiga)", message: "Amiga querida, hoje é dia de celebrar você! 🎉✨ Que seu novo ciclo seja repleto de alegrias, saúde, conquistas e muitos sorrisos. Sou grata por ter você na minha vida, por todas as risadas, conversas e momentos que já compartilhamos. Que seus sonhos floresçam e que cada dia traga motivos para você se sentir ainda mais especial, porque é exatamente isso que você é. 💖 Feliz aniversário, minha grande amiga!" },
+                { sender: "Tati (Irmã da Aline)", message: "Na vida, existem presentes que não vêm embrulhados… eles chegam como pessoas. E você, minha irmã, foi o maior presente que eu poderia ter recebido. Desde criança, nossa ligação sempre foi maior do que de sangue. É coisa de alma, de destino, de ter certeza que nunca estarei sozinha, porque em qualquer chamado, em qualquer momento, eu sei que você vai estar do meu lado. Você é a minha pessoa favorita, minha alma gêmea, minha companheira de vida. A gente se cuida, se apoia, se assiste e se entende como poucas pessoas no mundo conseguem. Essa parceria nossa é eterna: uma sempre olhando pela outra. Hoje, no seu aniversário, eu só consigo agradecer por ter você como irmã, amiga e presente. Obrigada por deixar meus dias mais leves, minha vida mais bonita e meu coração mais cheio de amor. Que sua vida seja sempre iluminada, porque você é luz na minha. Feliz aniversário. Eu te amo infinitamente, para sempre e além de tudo." },
+                { sender: "Pamela", message: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
+                { sender: "João", message: "Te amo mãe." }
             ]
         };
 
@@ -265,12 +262,6 @@
                     const photoCard = document.createElement('div');
                     photoCard.className = 'photo-card';
                     photoCard.style.backgroundImage = `url('${photo.url}')`;
-
-                    const caption = document.createElement('div');
-                    caption.className = 'photo-caption';
-                    caption.innerHTML = photo.caption.replace(/\n/g, '<br>');
-
-                    photoCard.appendChild(caption);
                     albumContainer.appendChild(photoCard);
                 });
             };
