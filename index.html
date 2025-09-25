@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para a melhor mãe do mundo!</title>
+    <style>
+        @keyframes sparkle {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.5); }
+            100% { filter: brightness(1); }
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Playfair Display', serif;
+            background: url('data:image/svg+xml,%3Csvg width="42" height="42" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23FFC0CB" fill-opacity="0.4" fill-rule="evenodd"%3E%3Cpath d="M3 21c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8C3.4 28.2 0 24.8 0 21v-2h3v2zm18 0c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8-3.8 0-6.8-3.4-6.8-7.2zM3 40c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8C3.4 41.2 0 37.8 0 34v6zm18 0c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8-3.8 0-6.8-3.4-6.8-7.2z"/%3E%3C/g%3E%3C/svg%3E'), linear-gradient(45deg, #FFDBE5, #FFE4F1);
+            background-repeat: repeat;
+            color: #555;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            border: 5px solid #FFC0CB;
+        }
+        .page-header h1 {
+            font-family: 'Lobster', cursive;
+            font-size: 4em;
+            color: #E75480;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: sparkle 2s infinite;
+            margin-bottom: 15px;
+        }
+        .page-header .subtitle {
+            font-style: italic;
+            color: #888;
+            margin-top: -20px;
+            font-size: 1.5em;
+        }
+        #countdown-timer {
+            margin-top: 15px;
+            font-size: 1.8em;
+            color: #E75480;
+            font-weight: bold;
+        }
+        .spotify-player-container {
+            margin-top: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .bio-section {
+            margin-top: 40px;
+            font-size: 1.25em;
+            line-height: 1.8;
+            text-align: center;
+            padding: 30px;
+            border: 2px dashed #FF69B4;
+            border-radius: 10px;
+            background-color: #FFF0F5;
+        }
+        .bio-section .signature {
+            font-style: italic;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 25px;
+            color: #E75480;
+            font-size: 1.1em;
+        }
+        .photo-album {
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #FFC0CB;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #FFF;
+        }
+        .album-container {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            padding: 10px 0;
+            min-height: 420px;
+        }
+        .photo-card {
+            min-width: calc(100% - 20px);
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s;
+            flex-shrink: 0;
+            margin: 0 10px;
+            border: 8px solid #FFF;
+            position: relative;
+        }
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            font-size: 1em;
+            text-align: center;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+            line-height: 1.4;
+        }
+        .photo-card:hover .photo-caption {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .album-controls {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+        .album-controls button {
+            padding: 15px 30px;
+            border: 2px solid #FF69B4;
+            background-color: #FFF0F5;
+            color: #FF69B4;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 0 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background-color 0.2s, color 0.2s;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .album-controls button:hover {
+            transform: translateY(-3px);
+            background-color: #FF69B4;
+            color: #FFF0F5;
+        }
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+            .page-header h1 { font-size: 3em; }
+            .bio-section p, .bio-section .signature { font-size: 1em; }
+            .photo-card { height: 300px; }
+            .photo-caption { font-size: 0.9em; padding: 10px; }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <h1>Para a melhor mãe do mundo!</h1>
+            <p class="subtitle">Aline Belo</p>
+            <div id="countdown-timer"></div>
+            
+            <div class="spotify-player-container">
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/25Q94Q2t02Tj7G29L3M9O3?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </header>
+
+        <section class="bio-section">
+            <p>
+                A melhor mãe do mundo, de seres humanos e animais (contando com o João e o Zé, os dois lerdos), ALINE BELO! Ela é a mulher mais inteligente que conhecemos, que planeja como ninguém e, mesmo diante de qualquer perrengue, nunca perde o sorriso que contagia todos ao redor e ilumina o ambiente. Com suas piadas sem graça (minha mais orgulhosa herança) e seu amor incondicional, ela se torna a pessoa mais inspiradora e esforçada que todos nós admiramos profundamente.
+            </p>
+            <p>
+                Conhecida como a "Nazaré" dos gatos, pelo seu hábito de ajudar os bichinhos necessitados, sua compaixão se estende a toda forma de vida, como um super-herói! Ela é também uma motoqueira maluca, com um "Belo" histórico de quedas e acidentes, mas ela continua rodando por aí, mostrando que você pode tentar derrubar quantas vezes for, mas um Belo de verdade sempre levanta. Mesmo que ela negue até fazer birra, é sim a melhor cozinheira do mundo, todos os pratos de domingo são um espetáculo e sinceramente, minhas marmitas sempre causam uma inveja no pessoal aqui do trabalho, o cheiro já deixa a amostra o amor e carinho colocados naquele prato.
+            </p>
+            <p>
+                O que eu quero dizer com tudo isso, é que a pessoa mais gentil e forte que eu, e falo por todos, NÓS conhecemos, mora comigo, me ensinou tudo que eu sei hoje e me deu a mais linda herança do mundo, de que quando você ajuda alguém, você ajuda todo mundo. Feliz Aniversário Mãe! eu te amo demais, você é a melhor, e é Punkrock!!!
+            </p>
+            <p class="signature">
+                Do seu filho que te ama muito, Lucas Belo.
+            </p>
+        </section>
+        
+        <section class="photo-album">
+            <div class="album-container" id="album-container">
+            </div>
+            <div class="album-controls">
+                <button id="prev-btn">Anterior</button>
+                <button id="next-btn">Próximo</button>
+            </div>
+        </section>
+
+        <section class="bio-section" style="margin-top: 50px;">
+            <h2>Mensagens de Outras Pessoas</h2>
+            <div id="messages-container"></div>
+        </section>
+
+    </main>
+    
+    <script>
+        const siteData = {
+            title: "Para a melhor mãe do mundo!",
+            subtitle: "Aline Belo",
+            birthday: "September 30, 2025 00:00:00",
+            bio: {
+                paragraph1: "A melhor mãe do mundo, de seres humanos e animais (contando com o João e o Zé, os dois lerdos), ALINE BELO! Ela é a mulher mais inteligente que conhecemos...",
+                paragraph2: "Conhecida como a 'Nazaré' dos gatos, pelo seu hábito de ajudar os bichinhos necessitados...",
+                paragraph3: "O que eu quero dizer com tudo isso, é que a pessoa mais gentil e forte que eu, e falo por todos, NÓS conhecemos...",
+                signature: "Do seu filho que te ama muito, Lucas Belo."
+            },
+            photos: [
+                { url: "mae-na-praia.jpg", caption: "Mãe na praia" },
+                { url: "mae-e-filho-shopping.jpg", caption: "Mãe e filho no shopping" },
+                { url: "mae-e-filho-joao.jpg", caption: "Mãe e filho João" },
+                { url: "mae-e-familia-parque.jpg", caption: "Mãe e família no parque" },
+                { url: "mae-na-cozinha.jpg", caption: "Mãe na cozinha" },
+                { url: "mae-e-avo.jpg", caption: "Mãe e avó" },
+                { url: "mae-e-pai-banheira.jpg", caption: "Mãe e pai na banheira" },
+                { url: "mae-recuperando.jpg", caption: "Mãe recuperando" },
+                { url: "mae-e-vi.jpg", caption: "Parabéns Raquel rsrs minha cópia mal-feita 😂 Todo mundo fala que a gente se parece… mas eu juro que sou a versão melhorada, viu? 😏 Amo você, que seu dia seja cheio de bolo, risadas e muita felicidade.🎂💖 Ass: Rute" },
+                { url: "mae-e-camilinha.jpg", caption: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
+                { url: "mae-e-bicho.jpg", caption: "Mãe com seus bichinhos" },
+                { url: "mae-e-pai1.jpg", caption: "Mãe e pai" },
+                { url: "mae-e-pai2.jpg", caption: "Mãe e pai" },
+                { url: "mae-e-familia.jpg", caption: "Mãe e família" },
+                { url: "mae-e-pamelagav.jpg", caption: "Mãe e Pâmela" },
+                { url: "mae-e-bia.jpg", caption: "Mãe e Bia" },
+                { url: "mae-e-tata.jpg", caption: "Mãe e Tatá" }
+            ],
+            messages: [
+                { sender: "Vivi (Irmã de Aline)", message: "Parabéns Raquel rsrs, minha cópia mal-feita 😂. Todo mundo fala que a gente se parece… mas eu juro que sou a versão melhorada, viu? 😏. Amo você. Que seu dia seja cheio de bolo, risadas e muita felicidade. 🎂💖" },
+                { sender: "Camilinha", message: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
+                { sender: "Tata (Nora de Aline)", message: "Aline, não tenho palavras pra descrever sobre sua importância e valor em minha vida. Desde o primeiro dia que nos conhecemos você sempre foi tão gentil, tão atenciosa, caridosa e divertida! Fiquei surpresa em ter sido tão bem acolhida, mesmo sendo ainda só uma estranha; com o passar desses anos, percebi que aquilo não era algo exclusivo do momento, mas era, na realidade, quem você é, na sua mais pura essência. Eu sou eternamente grata ao universo por ter me dado a oportunidade de te conhecer e conviver com você, saber que uma pessoa tão incrível nutre apreço por mim é algo impagável! Pode soar estranho o que eu vou falar agora (por eu ser a namorada do seu filho), mas eu te considero como uma mãe. Você é a minha principal figura materna e me espelho muito em você, nas suas atitudes. Espero um dia me tornar alguém tão tão maravilhoso quanto você é, me esforço todos os dias pra isso. Bem, estou me prolongando bastante, então vou encerrar por aqui. Eu espero de coração que você tenha um aniversário feliz, e que sua vida seja cada dia melhor, que você conquiste tudo que deseja, porque você merece, e merece demais. Eu te amo. Obrigada por tudo ♡" },
+                { sender: "Bia (Melhor amiga)", message: "Amiga querida, hoje é dia de celebrar você! 🎉✨ Que seu novo ciclo seja repleto de alegrias, saúde, conquistas e muitos sorrisos. Sou grata por ter você na minha vida, por todas as risadas, conversas e momentos que já compartilhamos. Que seus sonhos floresçam e que cada dia traga motivos para você se sentir ainda mais especial, porque é exatamente isso que você é. 💖 Feliz aniversário, minha grande amiga!" }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const albumContainer = document.getElementById('album-container');
+            const messagesContainer = document.getElementById('messages-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const countdownTimer = document.getElementById('countdown-timer');
+
+            // --- Lógica do Carrossel de Fotos ---
+            const createPhotoAlbum = () => {
+                siteData.photos.forEach(photo => {
+                    const photoCard = document.createElement('div');
+                    photoCard.className = 'photo-card';
+                    photoCard.style.backgroundImage = `url('${photo.url}')`;
+
+                    const caption = document.createElement('div');
+                    caption.className = 'photo-caption';
+                    caption.innerHTML = photo.caption.replace(/\n/g, '<br>');
+
+                    photoCard.appendChild(caption);
+                    albumContainer.appendChild(photoCard);
+                });
+            };
+
+            let currentPhotoIndex = 0;
+            let totalPhotos = siteData.photos.length;
+
+            const updateAlbumPosition = () => {
+                const offset = -currentPhotoIndex * 100;
+                albumContainer.style.transform = `translateX(${offset}%)`;
+            };
+
+            prevBtn.addEventListener('click', () => {
+                currentPhotoIndex = (currentPhotoIndex > 0) ? currentPhotoIndex - 1 : totalPhotos - 1;
+                updateAlbumPosition();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentPhotoIndex = (currentPhotoIndex < totalPhotos - 1) ? currentPhotoIndex + 1 : 0;
+                updateAlbumPosition();
+            });
+
+            // --- Lógica das Mensagens ---
+            const createMessages = () => {
+                siteData.messages.forEach(msg => {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'bio-section';
+                    msgDiv.style.border = '1px solid #FFC0CB';
+                    msgDiv.style.marginTop = '20px';
+
+                    const msgText = document.createElement('p');
+                    msgText.textContent = msg.message;
+                    msgDiv.appendChild(msgText);
+
+                    const signature = document.createElement('p');
+                    signature.className = 'signature';
+                    signature.textContent = `— ${msg.sender}`;
+                    msgDiv.appendChild(signature);
+
+                    messagesContainer.appendChild(msgDiv);
+                });
+            };
+
+            // --- Lógica do Contador de Aniversário ---
+            const updateCountdown = () => {
+                const birthday = new Date(siteData.birthday);
+                const now = new Date();
+                const diff = birthday.getTime() - now.getTime();
+                
+                if (diff <= 0) {
+                    countdownTimer.textContent = 'Feliz Aniversário!';
+                    return;
+                }
+                
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                countdownTimer.textContent = `Faltam ${days}d ${hours}h ${minutes}m ${seconds}s`;
+            };
+            
+            // Inicializa as funções
+            createPhotoAlbum();
+            createMessages();
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
+        });
+    </script>
+</body>
+</html>

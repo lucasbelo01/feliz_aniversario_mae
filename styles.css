@@ -1,0 +1,116 @@
+@keyframes sparkle {
+    0% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+    100% { filter: brightness(1); }
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(-45deg, #FF6F61, #FFD166, #A6E3E9, #72DDF7);
+    background-size: 400% 400%;
+    animation: rainbow 15s ease infinite;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 2.5em;
+    color: #E75480;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: sparkle 2s infinite;
+}
+
+.page-header .subtitle {
+    font-style: italic;
+    color: #666;
+    margin-top: -10px;
+}
+
+#music-toggle-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #8A2BE2;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#music-toggle-btn:hover {
+    transform: translateY(-2px);
+    background-color: #6A1ABF;
+}
+
+.bio-section {
+    margin-top: 20px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.photo-album {
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.album-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.photo-card {
+    min-width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s;
+    flex-shrink: 0;
+}
+
+.album-controls {
+    margin-top: 20px;
+}
+
+.album-controls button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #FF69B4;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.album-controls button:hover {
+    transform: translateY(-2px);
+    background-color: #C71585;
+}
