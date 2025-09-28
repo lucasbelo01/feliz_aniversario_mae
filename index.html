@@ -10,11 +10,6 @@
             50% { filter: brightness(1.5); }
             100% { filter: brightness(1); }
         }
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
         body {
             font-family: 'Playfair Display', serif;
             background: url('data:image/svg+xml,%3Csvg width="42" height="42" viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23FFC0CB" fill-opacity="0.4" fill-rule="evenodd"%3E%3Cpath d="M3 21c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8C3.4 28.2 0 24.8 0 21v-2h3v2zm18 0c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8-3.8 0-6.8-3.4-6.8-7.2zM3 40c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8C3.4 41.2 0 37.8 0 34v6zm18 0c0-3.8 3.4-6.8 7.2-6.8 3.8 0 6.8 3.4 6.8 7.2 0 3.8-3.4 6.8-7.2 6.8-3.8 0-6.8-3.4-6.8-7.2z"/%3E%3C/g%3E%3C/svg%3E'), linear-gradient(45deg, #FFDBE5, #FFE4F1);
@@ -136,6 +131,7 @@
         }
         .video-container video {
             max-width: 100%;
+            height: auto; /* Ajuste para vídeos em telas menores */
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
@@ -146,6 +142,7 @@
             .page-header h1 { font-size: 3em; }
             .bio-section p, .bio-section .signature { font-size: 1em; }
             .photo-card { height: 300px; }
+            .album-container { min-height: 320px; } /* Ajuste de altura para carrossel */
         }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -174,29 +171,30 @@
                 Do seu filho que te ama muito, Lucas Belo.
             </p>
         </section>
-
-        <section class="video-container">
-            <h2>Mensagem de vídeo</h2>
-            <video width="640" height="360" controls>
-                <source src="mae-e-amigas.mp4" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo.
-            </video>
-        </section>
-
-        <section class="video-container">
-            <h2>Uma mensagem de vídeo</h2>
-            <video width="640" height="360" controls>
-                <source src="mae-e-tati.mp4" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo.
-            </video>
-        </section>
-
+        
         <section class="photo-album">
+            <h2>Nosso Álbum de Memórias</h2>
             <div class="album-container" id="album-container">
             </div>
             <div class="album-controls">
                 <button id="prev-btn">Anterior</button>
                 <button id="next-btn">Próximo</button>
+            </div>
+        </section>
+
+        <section class="video-container">
+            <h2>Mensagens em Vídeo</h2>
+            <div style="margin-bottom: 20px;">
+                <video width="100%" height="auto" controls>
+                    <source src="mae-e-amigas.mp4" type="video/mp4">
+                    Seu navegador não suporta a tag de vídeo (Amigas).
+                </video>
+            </div>
+            <div>
+                <video width="100%" height="auto" controls>
+                    <source src="mae-e-tati.mp4" type="video/mp4">
+                    Seu navegador não suporta a tag de vídeo (Tati).
+                </video>
             </div>
         </section>
 
@@ -212,12 +210,7 @@
             title: "Para a melhor mãe do mundo!",
             subtitle: "Aline Belo",
             birthday: "September 30, 2025 00:00:00",
-            bio: {
-                paragraph1: "A melhor mãe do mundo, de seres humanos e animais (contando com o João aquele lerdão). É a mulher mais inteligente que conhecemos, que planeja como ninguém e, mesmo diante de qualquer perrengue, nunca perde o sorriso que contagia todos ao redor e ilumina o ambiente. Com suas piadas sem graça (minha mais orgulhosa herança) e seu amor incondicional, ela se torna a pessoa mais inspiradora e esforçada que todos nós admiramos profundamente.",
-                paragraph2: "Conhecida como a 'Nazaré' dos gatos, pelo seu hábito de ajudar os bichinhos necessitados, sua compaixão se estende a toda forma de vida, como um super-herói! Ela é também uma motoqueira maluca, com um 'Belo' histórico de quedas e acidentes, mas ela continua rodando por aí, mostrando que você pode tentar derrubar quantas vezes for, mas um Belo de verdade sempre levanta. Mesmo que ela negue até fazer birra, é sim a melhor cozinheira do mundo, todos os pratos de domingo são um espetáculo e sinceramente, minhas marmitas sempre causam uma inveja no pessoal aqui do trabalho, o cheiro já deixa a amostra o amor e carinho colocados naquele prato.",
-                paragraph3: "O que eu quero dizer com tudo isso, é que a pessoa mais gentil e forte que eu, e falo por todos, NÓS conhecemos, mora comigo, me ensinou tudo que eu sei hoje e me deu a mais linda herança do mundo, de que quando você ajuda alguém, você ajuda todo mundo. Feliz Aniversário Mãe! eu te amo demais, você é a melhor, e é Punkrock!!!",
-                signature: "Do seu filho que te ama muito, Lucas Belo."
-            },
+            // Os parágrafos do Lucas já estão no HTML, mas são mantidos aqui para registro
             photos: [
                 { url: "mae-na-praia.jpg" },
                 { url: "mae-e-filho-shopping.jpg" },
@@ -235,7 +228,8 @@
                 { url: "mae-e-familia.jpg" },
                 { url: "mae-e-pamelagav.jpg" },
                 { url: "mae-e-bia.jpg" },
-                { url: "mae-e-tata.jpg" }
+                { url: "mae-e-tata.jpg" },
+                { url: "mae-e-pam.jpg" } // Nova foto adicionada
             ],
             messages: [
                 { sender: "Dudu (Marido)", message: "Feliz aniversário, Tchu. Que seu novo ano seja tão incrível quanto você. Te amo." },
@@ -245,6 +239,7 @@
                 { sender: "Bia (Melhor amiga)", message: "Amiga querida, hoje é dia de celebrar você! 🎉✨ Que seu novo ciclo seja repleto de alegrias, saúde, conquistas e muitos sorrisos. Sou grata por ter você na minha vida, por todas as risadas, conversas e momentos que já compartilhamos. Que seus sonhos floresçam e que cada dia traga motivos para você se sentir ainda mais especial, porque é exatamente isso que você é. 💖 Feliz aniversário, minha grande amiga!" },
                 { sender: "Tati (Irmã da Aline)", message: "Na vida, existem presentes que não vêm embrulhados… eles chegam como pessoas. E você, minha irmã, foi o maior presente que eu poderia ter recebido. Desde criança, nossa ligação sempre foi maior do que de sangue. É coisa de alma, de destino, de ter certeza que nunca estarei sozinha, porque em qualquer chamado, em qualquer momento, eu sei que você vai estar do meu lado. Você é a minha pessoa favorita, minha alma gêmea, minha companheira de vida. A gente se cuida, se apoia, se assiste e se entende como poucas pessoas no mundo conseguem. Essa parceria nossa é eterna: uma sempre olhando pela outra. Hoje, no seu aniversário, eu só consigo agradecer por ter você como irmã, amiga e presente. Obrigada por deixar meus dias mais leves, minha vida mais bonita e meu coração mais cheio de amor. Que sua vida seja sempre iluminada, porque você é luz na minha. Feliz aniversário. Eu te amo infinitamente, para sempre e além de tudo." },
                 { sender: "Pamela", message: "Parabéns, minha amiga, parceira e sócia! 💖 Agradeço a Deus e à Bia por ter colocado você na minha vida. Você é tão especial e uma parceira incrível, que me inspira e me incentiva todos os dias. Obrigada por tudo que já vivemos e construímos juntas. Tenho certeza de que ainda vamos crescer muito lado a lado. Que seu novo ciclo seja repleto de amor, alegria e realizações. Te admiro demais, te quero sempre feliz e conte sempre comigo! ❤️" },
+                { sender: "Pamzinha", message: "Hoje é um dia muito especial, porque celebramos a sua vida. E eu não poderia deixar de dizer o quanto você é importante para mim. Você não é só minha tia é minha melhor amiga, minha confidente, meu porto seguro e, de coração, a minha segunda mãe. Eu amo demais você e sou imensamente grata por tudo que compartilhamos juntas, nossas fofocas , as risadas , os momentos de apoio e até aqueles simples instantes de estar perto, que sempre me trazem paz. Quando estamos juntas, parece que o tempo passa mais leve, e eu sinto como se o mundo ficasse mais bonito. Desejo que este novo ciclo venha cheio de saúde, alegrias, realizações e muito amor. Que seus sonhos se realizem e que você nunca perca essa luz única que ilumina a vida de todos nós e os animalzinho . Você merece o melhor de tudo, porque é simplesmente incrível!!!! Que a vida te devolva em dobro todo o carinho, amor e cuidado que você espalha. Eu te amo com toda a minha alma! ❤️🎉✨" }, // Nova mensagem adicionada
                 { sender: "João", message: "Te amo mãe." }
             ]
         };
@@ -286,30 +281,55 @@
 
             // --- Lógica das Mensagens ---
             const createMessages = () => {
-                siteData.messages.forEach(msg => {
-                    const msgDiv = document.createElement('div');
-                    msgDiv.className = 'bio-section';
-                    msgDiv.style.border = '1px solid #FFC0CB';
-                    msgDiv.style.marginTop = '20px';
+                // Mensagem especial para organizar a ordem das mensagens
+                const messageOrder = [
+                    "Dudu (Marido)",
+                    "Tati (Irmã da Aline)",
+                    "Vivi (Irmã de Aline)",
+                    "Pamzinha",
+                    "Tata (Nora de Aline)",
+                    "Bia (Melhor amiga)",
+                    "Pamela",
+                    "Camilinha",
+                    "João"
+                ];
 
-                    const msgText = document.createElement('p');
-                    msgText.textContent = msg.message;
-                    msgDiv.appendChild(msgText);
+                messageOrder.forEach(senderName => {
+                    const msgData = siteData.messages.find(msg => msg.sender === senderName);
+                    if (msgData) {
+                        const msgDiv = document.createElement('div');
+                        msgDiv.className = 'bio-section';
+                        msgDiv.style.border = '1px solid #FFC0CB';
+                        msgDiv.style.marginTop = '20px';
 
-                    const signature = document.createElement('p');
-                    signature.className = 'signature';
-                    signature.textContent = `— ${msg.sender}`;
-                    msgDiv.appendChild(signature);
+                        const msgText = document.createElement('p');
+                        msgText.textContent = msgData.message;
+                        msgDiv.appendChild(msgText);
 
-                    messagesContainer.appendChild(msgDiv);
+                        const signature = document.createElement('p');
+                        signature.className = 'signature';
+                        signature.textContent = `— ${msgData.sender}`;
+                        msgDiv.appendChild(signature);
+
+                        messagesContainer.appendChild(msgDiv);
+                    }
                 });
             };
 
             // --- Lógica do Contador de Aniversário ---
             const updateCountdown = () => {
-                const birthday = new Date(siteData.birthday);
-                const now = new Date();
-                const diff = birthday.getTime() - now.getTime();
+                // Correção: Para garantir que o aniversário seja sempre no futuro,
+                // verificamos o ano atual e ajustamos a data se já passou.
+                const today = new Date();
+                const currentYear = today.getFullYear();
+                let birthday = new Date(siteData.birthday);
+                
+                // Se o aniversário deste ano já passou, ajusta para o próximo ano.
+                if (birthday.getTime() < today.getTime()) {
+                    birthday.setFullYear(currentYear + 1);
+                }
+
+                const diff = birthday.getTime() - today.getTime();
                 
                 if (diff <= 0) {
                     countdownTimer.textContent = 'Feliz Aniversário!';
